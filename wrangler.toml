@@ -1,0 +1,8 @@
+name = "20260928"
+compatibility_date = "2026-07-08"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "20260928-db"
+database_id = "2a230432-2988-4360-8003-78d382b4a9ae"

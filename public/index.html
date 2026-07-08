@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们要结婚啦！ - 婚礼邀请函</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 自定义字体与动画 */
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: #fdfbf7;
+            color: #5d4037;
+            overflow-x: hidden;
+        }
+        
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* 淡入动画 */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 花瓣飘落背景动画 (简化版) */
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23eaddcf' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* 照片相框效果 */
+        .photo-frame {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 8px solid white;
+            transition: transform 0.3s ease;
+        }
+        .photo-frame:hover {
+            transform: scale(1.02);
+        }
+
+        /* 按钮点击波纹效果 */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        .btn-ripple:active:after {
+            transform: scale(0, 0);
+            opacity: 0.3;
+            transition: 0s;
+        }
+
+        /* 隐藏滚动条但保留功能 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-pattern min-h-screen flex flex-col items-center">
+
+    <!-- 音乐控制按钮 -->
+    <div id="music-control" class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg cursor-pointer hover:bg-white transition-all duration-300" onclick="toggleMusic()">
+        <i class="fas fa-music text-pink-500 animate-spin-slow" id="music-icon" style="animation-duration: 3s;"></i>
+    </div>
+    <!-- 模拟音频文件，实际使用时请替换为真实mp3链接 -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/Games/Mario/SuperMarioBros.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 头部封面区域 -->
+    <header class="w-full max-w-md bg-white shadow-xl rounded-b-3xl overflow-hidden relative mb-8 fade-in-up" style="animation-delay: 0.1s;">
+        <div class="relative h-96 w-full">
+            <img src="https://picsum.photos/seed/weddingcouple/400/600" alt="新人合照" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end items-center pb-8 text-white">
+                <p class="text-lg tracking-widest mb-2 font-light">WEDDING INVITATION</p>
+                <h1 class="text-4xl font-bold mb-2 font-handwriting">Li Ming & Han Meimei</h1>
+                <p class="text-sm opacity-90">2026年10月01日</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容容器 -->
+    <main class="w-full max-w-md px-4 space-y-8 pb-20">
+
+        <!-- 倒计时区域 -->
+        <section class="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-sm text-center fade-in-up" style="animation-delay: 0.3s;">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">距离婚礼还有</h2>
+            <div class="flex justify-center space-x-4" id="countdown">
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-bold text-pink-600" id="days">00</span>
+                    <span class="text-xs text-gray-500">天</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-bold text-pink-600" id="hours">00</span>
+                    <span class="text-xs text-gray-500">时</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-bold text-pink-600" id="minutes">00</span>
+                    <span class="text-xs text-gray-500">分</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-bold text-pink-600" id="seconds">00</span>
+                    <span class="text-xs text-gray-500">秒</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 故事/相册区域 -->
+        <section class="space-y-4 fade-in-up" style="animation-delay: 0.5s;">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 inline-block border-b-2 border-pink-300 pb-1">我们的故事</h2>
+            </div>
+            
+            <div class="bg-white p-4 rounded-xl shadow-sm photo-frame">
+                <img src="https://picsum.photos/seed/love1/400/300" alt="第一次旅行" class="w-full h-48 object-cover rounded-lg mb-3">
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    "相遇是春风十里，原来是你。相爱是山长水阔，最后是你。" <br>
+                    感谢命运让我们在最美好的年华相遇。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <img src="https://picsum.photos/seed/love2/200/200" alt="日常合影" class="w-full h-32 object-cover rounded-lg shadow-md">
+                <img src="https://picsum.photos/seed/love3/200/200" alt="求婚瞬间" class="w-full h-32 object-cover rounded-lg shadow-md">
+            </div>
+        </section>
+
+        <!-- 婚礼详情 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.7s;">
+            <div class="text-center mb-6">
+                <i class="fas fa-ring text-3xl text-pink-400 mb-2"></i>
+                <h2 class="text-xl font-bold text-gray-800">婚礼详情</h2>
+            </div>
+            
+            <div class="space-y-4 text-center">
+                <div class="border-b border-dashed border-gray-200 pb-4">
+                    <p class="text-gray-500 text-sm">时间 TIME</p>
+                    <p class="text-lg font-bold text-gray-800">2026年10月01日</p>
+                    <p class="text-sm text-gray-600">农历八月十五 11:58</p>
+                </div>
+                
+                <div class="pb-2">
+                    <p class="text-gray-500 text-sm">地点 LOCATION</p>
+                    <p class="text-lg font-bold text-gray-800">香格里拉大酒店</p>
+                    <p class="text-sm text-gray-600">宴会厅三楼 · 玫瑰厅</p>
+                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center justify-center mt-3 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm hover:bg-pink-100 transition-colors">
+                        <i class="fas fa-map-marker-alt mr-2"></i> 查看地图导航
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 宾客回执表单 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.9s;">
+            <div class="text-center mb-6">
+                <i class="fas fa-envelope-open-text text-3xl text-pink-400 mb-2"></i>
+                <h2 class="text-xl font-bold text-gray-800">出席回执222</h2>
+                <p class="text-xs text-gray-400 mt-1">期待您的到来，请提前告知我们以便安排座位</p>
+            </div>
+
+            <form id="rsvp-form" class="space-y-4" onsubmit="handleRSVP(event)">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">您的姓名</label>
+                    <input type="text" id="guest-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" placeholder="请输入姓名">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">联系电话</label>
+                    <input type="tel" id="guest-phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" placeholder="请输入手机号">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">出席人数</label>
+                    <select id="guest-count" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all">
+                        <option value="1">1人</option>
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人及以上</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">祝福语 (可选)</label>
+                    <textarea id="guest-message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" placeholder="留下您对新人的祝福..."></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 btn-ripple">
+                    提交回执
+                </button>
+            </form>
+
+            <!-- 提交成功提示 (默认隐藏) -->
+            <div id="success-message" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-2xl text-green-500"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">提交成功！</h3>
+                <p class="text-gray-500 text-sm mt-2">感谢您的祝福，我们婚礼见！</p>
+                <button onclick="resetForm()" class="mt-4 text-pink-500 text-sm underline">再填一份</button>
+            </div>
+            
+            <!-- 错误提示 (默认隐藏) -->
+            <div id="error-message" class="hidden text-center py-4">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-exclamation-triangle text-2xl text-red-500"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">提交失败</h3>
+                <p class="text-gray-500 text-sm mt-2" id="error-text">网络错误，请稍后重试</p>
+                <button onclick="resetForm()" class="mt-4 text-pink-500 text-sm underline">返回修改</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="w-full text-center py-6 text-gray-400 text-xs">
+        <p>Made with ❤️ by Li Ming & Han Meimei</p>
+        <p class="mt-1">© 2026 Wedding Invitation</p>
+    </footer>
+
+    <!-- JavaScript 逻辑 -->
+    <script>
+        // 1. 倒计时逻辑
+        function updateCountdown() {
+            // 设置婚礼日期：2026年10月1日 11:58:00
+            const weddingDate = new Date('2026-10-01T11:58:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<div class="text-pink-600 font-bold">婚礼进行中 / 已结束</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // 初始化调用
+
+        // 2. 音乐控制逻辑
+        let isPlaying = false;
+        const audio = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.classList.remove('animate-spin-slow');
+                musicIcon.classList.add('text-gray-400');
+                musicIcon.classList.remove('text-pink-500');
+            } else {
+                audio.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+                musicIcon.classList.add('animate-spin-slow');
+                musicIcon.classList.remove('text-gray-400');
+                musicIcon.classList.add('text-pink-500');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 尝试自动播放（浏览器通常限制，需用户交互）
+        document.body.addEventListener('click', () => {
+            if (!isPlaying) {
+                // 可选：首次点击页面任意位置自动播放
+                // toggleMusic(); 
+            }
+        }, { once: true });
+
+        // 3. 表单提交逻辑 (已修改为云端 API)
+        async function handleRSVP(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            const originalBtnText = submitBtn.innerText;
+            
+            // 锁定按钮防止重复提交
+            submitBtn.disabled = true;
+            submitBtn.innerText = '提交中...';
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const name = document.getElementById('guest-name').value;
+            const phone = document.getElementById('guest-phone').value;
+            const count = document.getElementById('guest-count').value;
+            const message = document.getElementById('guest-message').value;
+
+            try {
+                // 发送数据到 Cloudflare Pages Function
+                const response = await fetch('/api/submit-rsvp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        count: parseInt(count),
+                        message: message
+                    })
+                });
+
+                if (response.ok) {
+                    // 提交成功
+                    document.getElementById('rsvp-form').classList.add('hidden');
+                    document.getElementById('success-message').classList.remove('hidden');
+                    document.getElementById('error-message').classList.add('hidden');
+                    confettiEffect();
+                } else {
+                    throw new Error('服务器响应错误');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                // 提交失败
+                document.getElementById('rsvp-form').classList.add('hidden');
+                document.getElementById('error-message').classList.remove('hidden');
+                document.getElementById('success-message').classList.add('hidden');
+            } finally {
+                // 恢复按钮状态 (虽然表单隐藏了，但重置时需要)
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('rsvp-form').reset();
+            document.getElementById('rsvp-form').classList.remove('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+            document.getElementById('error-message').classList.add('hidden');
+        }
+
+        // 简单的彩带特效模拟
+        function confettiEffect() {
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.zIndex = '100';
+                confetti.style.transition = 'top 2s ease-in, transform 2s linear';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.style.top = '110vh';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                }, 10);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
