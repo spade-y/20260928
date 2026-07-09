@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们要结婚啦！ - 婚礼邀请函</title>
+    <title>我们要结婚啦！ - 杨成 & 焦敏的婚礼邀请</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入 Font Awesome 图标 -->
@@ -88,6 +88,15 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        
+        /* 旋转动画 */
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-pattern min-h-screen flex flex-col items-center">
@@ -139,47 +148,72 @@
             </div>
         </section>
 
-        <!-- 故事/相册区域 -->
-        <section class="space-y-4 fade-in-up" style="animation-delay: 0.5s;">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 inline-block border-b-2 border-pink-300 pb-1">我们的故事</h2>
-            </div>
-            
-            <div class="bg-white p-4 rounded-xl shadow-sm photo-frame">
-                <img src="https://picsum.photos/seed/love1/400/300" alt="第一次旅行" class="w-full h-48 object-cover rounded-lg mb-3">
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    "相遇是春风十里，原来是你。相爱是山长水阔，最后是你。" <br>
-                    感谢命运让我们在最美好的年华相遇。
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <img src="https://picsum.photos/seed/love2/200/200" alt="日常合影" class="w-full h-32 object-cover rounded-lg shadow-md">
-                <img src="https://picsum.photos/seed/love3/200/200" alt="求婚瞬间" class="w-full h-32 object-cover rounded-lg shadow-md">
+        <!-- 故事/介绍区域 -->
+        <section class="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.5s;">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-4 font-handwriting">Our Story</h2>
+            <p class="text-gray-600 leading-relaxed text-center italic">
+                "两姓联姻，一堂缔约，良缘永结，匹配同称。"<br><br>
+                在这个特别的日子里，我们诚挚地邀请您来分享我们的喜悦。
+            </p>
+            <div class="mt-6 flex justify-center">
+                <img src="https://picsum.photos/seed/flowers/300/200" alt="装饰花朵" class="rounded-lg shadow-md opacity-80">
             </div>
         </section>
 
-        <!-- 婚礼详情 -->
-        <section class="bg-white rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.7s;">
-            <div class="text-center mb-6">
-                <i class="fas fa-ring text-3xl text-pink-400 mb-2"></i>
-                <h2 class="text-xl font-bold text-gray-800">婚礼详情</h2>
+        <!-- 相册画廊 -->
+        <section class="fade-in-up" style="animation-delay: 0.7s;">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6 font-handwriting">Sweet Moments</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="photo-frame rounded-lg overflow-hidden h-48">
+                    <img src="https://picsum.photos/seed/love1/300/400" alt="甜蜜瞬间1" class="w-full h-full object-cover">
+                </div>
+                <div class="photo-frame rounded-lg overflow-hidden h-48 mt-8">
+                    <img src="https://picsum.photos/seed/love2/300/400" alt="甜蜜瞬间2" class="w-full h-full object-cover">
+                </div>
+                <div class="photo-frame rounded-lg overflow-hidden h-48">
+                    <img src="https://picsum.photos/seed/love3/300/400" alt="甜蜜瞬间3" class="w-full h-full object-cover">
+                </div>
+                <div class="photo-frame rounded-lg overflow-hidden h-48 mt-8">
+                    <img src="https://picsum.photos/seed/love4/300/400" alt="甜蜜瞬间4" class="w-full h-full object-cover">
+                </div>
             </div>
+        </section>
+
+        <!-- 婚礼详情与地图 -->
+        <section class="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.9s;">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6 font-handwriting">Wedding Details</h2>
             
-            <div class="space-y-4 text-center">
-                <div class="border-b border-dashed border-gray-200 pb-4">
-                    <p class="text-gray-500 text-sm">时间 TIME</p>
-                    <p class="text-lg font-bold text-gray-800">2026年10月01日</p>
-                    <p class="text-sm text-gray-600">农历八月十五 11:58</p>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-pink-100 p-3 rounded-full text-pink-600">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">时间</h3>
+                        <p class="text-gray-600 text-sm">2026年09月28日 (星期一)</p>
+                        <p class="text-gray-600 text-sm">中午 12:00 入席</p>
+                    </div>
                 </div>
                 
-                <div class="pb-2">
-                    <p class="text-gray-500 text-sm">地点 LOCATION</p>
-                    <p class="text-lg font-bold text-gray-800">香格里拉大酒店</p>
-                    <p class="text-sm text-gray-600">宴会厅三楼 · 玫瑰厅</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center justify-center mt-3 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm hover:bg-pink-100 transition-colors">
-                        <i class="fas fa-map-marker-alt mr-2"></i> 查看地图导航
-                    </a>
+                <div class="flex items-start space-x-4">
+                    <div class="bg-pink-100 p-3 rounded-full text-pink-600">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">地点</h3>
+                        <p class="text-gray-600 text-sm">地点待定待定 · 宴会厅也待定</p>
+                        <p class="text-gray-600 text-sm">陕西省渭南市合阳县</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模拟地图 -->
+            <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden relative group cursor-pointer" onclick="openMap()">
+                <img src="https://picsum.photos/seed/map/400/200" alt="婚礼地点地图" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="bg-white/90 px-4 py-2 rounded-full shadow-lg text-pink-600 font-bold text-sm">
+                        <i class="fas fa-location-arrow mr-2"></i> 查看导航
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,10 +240,17 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">出席人数</label>
                     <select id="guest-count" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all">
-                        <option value="1">1人</option>
-                        <option value="2">2人</option>
-                        <option value="3">3人</option>
-                        <option value="4">4人及以上</option>
+                        <option value="0">0 人 (不能参加)</option>
+                        <option value="1">1 人</option>
+                        <option value="2">2 人</option>
+                        <option value="3">3 人</option>
+                        <option value="4">4 人</option>
+                        <option value="5">5 人</option>
+                        <option value="6">6 人</option>
+                        <option value="7">7 人</option>
+                        <option value="8">8 人</option>
+                        <option value="9">9 人</option>
+                        <option value="10">10 人</option>
                     </select>
                 </div>
 
@@ -219,7 +260,7 @@
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 btn-ripple">
-                    提交回执
+                    提交回复
                 </button>
             </form>
 
@@ -247,17 +288,17 @@
     </main>
 
     <!-- 页脚 -->
-    <footer class="w-full text-center py-6 text-gray-400 text-xs">
-        <p>Made with ❤️ by Li Ming & Han Meimei</p>
-        <p class="mt-1">© 2026 Wedding Invitation</p>
+    <footer class="w-full text-center py-6 text-gray-500 text-sm fade-in-up" style="animation-delay: 1.3s;">
+        <p>© 2026 Yang Cheng & Jiao Min</p>
+        <p class="mt-1">期待与您相见</p>
     </footer>
 
     <!-- JavaScript 逻辑 -->
     <script>
         // 1. 倒计时逻辑
         function updateCountdown() {
-            // 设置婚礼日期：2026年10月1日 11:58:00
-            const weddingDate = new Date('2026-10-01T11:58:00').getTime();
+            // 设置婚礼日期：2026年09月28日 12:00:00
+            const weddingDate = new Date('2026-09-28T12:00:00').getTime();
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
@@ -278,37 +319,36 @@
         }
 
         setInterval(updateCountdown, 1000);
-        updateCountdown(); // 初始化调用
+        updateCountdown(); // 初始化执行
 
         // 2. 音乐控制逻辑
-        let isPlaying = false;
         const audio = document.getElementById('bg-music');
         const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
 
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
                 musicIcon.classList.remove('animate-spin-slow');
-                musicIcon.classList.add('text-gray-400');
-                musicIcon.classList.remove('text-pink-500');
+                musicIcon.classList.add('fa-pause');
+                musicIcon.classList.remove('fa-music');
             } else {
-                audio.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+                audio.play().catch(e => console.log("Audio play failed:", e));
                 musicIcon.classList.add('animate-spin-slow');
-                musicIcon.classList.remove('text-gray-400');
-                musicIcon.classList.add('text-pink-500');
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-music');
             }
             isPlaying = !isPlaying;
         }
 
-        // 尝试自动播放（浏览器通常限制，需用户交互）
-        document.body.addEventListener('click', () => {
+        // 尝试自动播放（浏览器通常限制自动播放，需用户交互）
+        document.body.addEventListener('click', function() {
             if (!isPlaying) {
-                // 可选：首次点击页面任意位置自动播放
-                // toggleMusic(); 
+                toggleMusic();
             }
         }, { once: true });
 
-        // 3. 表单提交逻辑 (已修改为云端 API)
+        // 3. 表单提交逻辑
         async function handleRSVP(event) {
             event.preventDefault();
             const submitBtn = document.getElementById('submit-btn');
@@ -334,7 +374,7 @@
                     body: JSON.stringify({
                         name: name,
                         phone: phone,
-                        count: parseInt(count),
+                        count: count,
                         message: message
                     })
                 });
@@ -345,6 +385,12 @@
                     document.getElementById('success-message').classList.remove('hidden');
                     document.getElementById('error-message').classList.add('hidden');
                     confettiEffect();
+		            // 修改点：根据人数显示不同提示
+		            if (count === 0) {
+		                alert(`很遗憾，${name} 不能来参加婚礼。感谢您的祝福！`);
+		            } else {
+		                alert(`感谢您的祝福，${name}！我们已收到您的出席确认（${count}人）。`);
+					}
                 } else {
                     throw new Error('服务器响应错误');
                 }
