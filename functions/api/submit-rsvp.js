@@ -17,7 +17,7 @@ export async function onRequestPost(context) {
     // 4. 执行插入操作
     // 注意：确保你的 D1 数据库中已经创建了 guests 表
     const stmt = db.prepare(
-      `INSERT INTO guests (name, phone, guest_count, message, created_at) VALUES (?, ?, ?, ?, datetime('now'))`
+      `INSERT INTO guests (name, phone, count, message, create_time) VALUES (?, ?, ?, ?, datetime('now'))`
     );
     
     await stmt.bind(name, phone, count, message || '').run();
