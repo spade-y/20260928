@@ -454,7 +454,8 @@
                 // 如果未安装APP，可以使用Web版地图作为备选，或者直接使用系统默认地图
                 // 以下是通用Web地图链接示例（高德）：
                 setTimeout(() => {
-                     window.open(`https://m.amap.com/navi/?dest=${encodeURIComponent(address)}&destName=${encodeURIComponent(name)}&key=your_amap_key`, '_blank');
+					window.open(`https://www.amap.com/search?query=${encodeURIComponent(address)}`, '_blank');
+                    //window.open(`https://m.amap.com/navi/?dest=${encodeURIComponent(address)}&destName=${encodeURIComponent(name)}&key=your_amap_key`, '_blank');
                 }, 1000);
             } else {
                 // PC端直接打开网页地图
