@@ -1,7 +1,7 @@
 export async function onRequestPost(context) {
   try {
     // 1. 解析请求体
-    const { name, phone, count, message, timestamp } = await context.request.json();
+    const { name, phone, count, message } = await context.request.json();
 
     // 2. 基本验证
     if (!name || !phone || !count) {
@@ -17,10 +17,10 @@ export async function onRequestPost(context) {
     // 4. 执行插入操作
     // 注意：确保你的 D1 数据库中已经创建了 guests 表
     const stmt = db.prepare(
-      `INSERT INTO guests (name, phone, Number(count), message, create_time) VALUES (?, ?, ?, ?, ?)`
+      `INSERT INTO guests (name, phone, count, message, create_time) VALUES (?, ?, ?, ?, datetime('now'))`
     );
     
-    await stmt.bind(name, phone, count, message || '', create_time).run();
+    await stmt.bind(name, phone, count, message || '').run();
 
     // 5. 返回成功响应
     return new Response(JSON.stringify({ success: true, message: '回执提交成功' }), {

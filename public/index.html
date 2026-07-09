@@ -159,34 +159,23 @@
             </div>
         </section>
 
-        <!-- 故事/介绍区域 -->
-        <section class="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-sm fade-in-up" style="animation-delay: 0.5s;">
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-4 font-handwriting">Our Story</h2>
-            <p class="text-gray-600 leading-relaxed text-center italic">
-                "两姓联姻，一堂缔约，良缘永结，匹配同称。"<br><br>
-                在这个特别的日子里，我们诚挚地邀请您来分享我们的喜悦。
-            </p>
-            <div class="mt-6 flex justify-center">
-                <img src="https://picsum.photos/seed/flowers/300/200" alt="装饰花朵" class="rounded-lg shadow-md opacity-80">
+        <!-- 故事/相册区域 -->
+        <section class="space-y-4 fade-in-up" style="animation-delay: 0.5s;">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 inline-block border-b-2 border-pink-300 pb-1">我们的故事</h2>
             </div>
-        </section>
+            
+            <div class="bg-white p-4 rounded-xl shadow-sm photo-frame">
+                <img src="https://picsum.photos/seed/love1/400/300" alt="第一次旅行" class="w-full h-48 object-cover rounded-lg mb-3">
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    "相遇是春风十里，原来是你。相爱是山长水阔，最后是你。" <br>
+                    感谢命运让我们在最美好的年华相遇。
+                </p>
+            </div>
 
-        <!-- 相册画廊 -->
-        <section class="fade-in-up" style="animation-delay: 0.7s;">
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6 font-handwriting">Sweet Moments</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="photo-frame rounded-lg overflow-hidden h-48">
-                    <img src="https://picsum.photos/seed/love1/300/400" alt="甜蜜瞬间1" class="w-full h-full object-cover">
-                </div>
-                <div class="photo-frame rounded-lg overflow-hidden h-48 mt-8">
-                    <img src="https://picsum.photos/seed/love2/300/400" alt="甜蜜瞬间2" class="w-full h-full object-cover">
-                </div>
-                <div class="photo-frame rounded-lg overflow-hidden h-48">
-                    <img src="https://picsum.photos/seed/love3/300/400" alt="甜蜜瞬间3" class="w-full h-full object-cover">
-                </div>
-                <div class="photo-frame rounded-lg overflow-hidden h-48 mt-8">
-                    <img src="https://picsum.photos/seed/love4/300/400" alt="甜蜜瞬间4" class="w-full h-full object-cover">
-                </div>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="https://picsum.photos/seed/love2/200/200" alt="日常合影" class="w-full h-32 object-cover rounded-lg shadow-md">
+                <img src="https://picsum.photos/seed/love3/200/200" alt="求婚瞬间" class="w-full h-32 object-cover rounded-lg shadow-md">
             </div>
         </section>
 
@@ -271,7 +260,7 @@
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 btn-ripple">
-                    提交回复
+                    提交回执
                 </button>
             </form>
 
@@ -386,8 +375,7 @@
                         name: name,
                         phone: phone,
                         count: count,
-                        message: message,
-                        timestamp: new Date().toISOString()
+                        message: message
                     })
                 });
 
