@@ -437,29 +437,24 @@
         }
         // 打开地图功能
         function openMap() {
-            // 这里设置目的地坐标或地址
-            // 示例使用高德地图API格式，也可以换成百度地图或腾讯地图
-            // 参数：name=地点名称, addr=详细地址
-            
+            const position = "110.15031,35.22482";
+			const name = "格林春天(凤凰西路)";
             const address = "陕西省渭南市合阳县 格林春天(凤凰西路)";
-            const name = "格林春天(凤凰西路)";
-            
+
             // 检测是否为移动设备
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
                 // 尝试唤起高德地图APP
                 window.location.href = `amapuri://route/plan/?sid=&slat=&slon=&sname=我的位置&did=&dlat=35.22482&dlon=110.15031&dname=${encodeURIComponent(name)}&dev=0&t=0`;
-                
-                // 如果未安装APP，可以使用Web版地图作为备选，或者直接使用系统默认地图
-                // 以下是通用Web地图链接示例（高德）：
                 setTimeout(() => {
-					window.open(`https://www.amap.com/search?query=${encodeURIComponent(address)}`, '_blank');
+					//window.open(`https://www.amap.com/search?query=${encodeURIComponent(address)}`, '_blank');
                     //window.open(`https://m.amap.com/navi/?dest=${encodeURIComponent(address)}&destName=${encodeURIComponent(name)}&key=your_amap_key`, '_blank');
+					//window.open(`https://uri.amap.com/marker?position=${encodeURIComponent(position)}&name=${encodeURIComponent(name)}&callnative=1`, '_blank');
                 }, 1000);
             } else {
-                // PC端直接打开网页地图
-                window.open(`https://www.amap.com/search?query=${encodeURIComponent(address)}`, '_blank');
+                //window.open(`https://www.amap.com/search?query=${encodeURIComponent(address)}`, '_blank');
+				window.open(`https://uri.amap.com/marker?position=${encodeURIComponent(position)}&name=${encodeURIComponent(name)}&callnative=1`, '_blank');
             }
         }
     </script>
