@@ -380,12 +380,7 @@
                     document.getElementById('success-message').classList.remove('hidden');
                     document.getElementById('error-message').classList.add('hidden');
                     confettiEffect();
-		            // 修改点：根据人数显示不同提示
-		            if (count === 0) {
-		                alert(`很遗憾，${name} 不能来参加婚礼。感谢您的祝福！`);
-		            } else {
-		                alert(`感谢您的祝福，${name}！我们已收到您的出席确认（${count}人）。`);
-					}
+		            alert(`感谢您的祝福，${name}！我们已收到您的出席确认（${count}人）。`);
                 } else {
                     throw new Error('服务器响应错误');
                 }
