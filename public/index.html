@@ -97,6 +97,17 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+        
+        /* 加载动画 */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #ec4899;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
 <body class="bg-pattern min-h-screen flex flex-col items-center">
@@ -375,7 +386,8 @@
                         name: name,
                         phone: phone,
                         count: count,
-                        message: message
+                        message: message,
+                        timestamp: new Date().toISOString()
                     })
                 });
 
