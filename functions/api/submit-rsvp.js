@@ -20,7 +20,7 @@ export async function onRequestPost(context) {
       `INSERT INTO guests (name, phone, Number(count), message, create_time) VALUES (?, ?, ?, ?, ?)`
     );
     
-    await stmt.bind(name, phone, count, message, create_time || '').run();
+    await stmt.bind(name, phone, count, message, || '', create_time).run();
 
     // 5. 返回成功响应
     return new Response(JSON.stringify({ success: true, message: '回执提交成功' }), {
