@@ -1,7 +1,5 @@
 export async function onRequestPost(context) {
-	console.error('1');
   try {
-	  console.error('2');
     // 1. 解析请求体
     const { name, phone, count, message } = await context.request.json();
 
@@ -17,9 +15,9 @@ export async function onRequestPost(context) {
     const db = context.env.DB;
     
     // 4. 执行插入操作
-    // 注意：确保你的 D1 数据库中已经创建了 rsvps 表
+    // 注意：确保你的 D1 数据库中已经创建了 guests 表
     const stmt = db.prepare(
-      `INSERT INTO rsvps (name, phone, guest_count, message, created_at) VALUES (?, ?, ?, ?, datetime('now'))`
+      `INSERT INTO guests (name, phone, guest_count, message, created_at) VALUES (?, ?, ?, ?, datetime('now'))`
     );
     
     await stmt.bind(name, phone, count, message || '').run();
@@ -31,7 +29,6 @@ export async function onRequestPost(context) {
     });
 
   } catch (error) {
-	  console.error('3');
     console.error('Database error:', error);
     return new Response(JSON.stringify({ error: '内部服务器错误' }), {
       status: 500,
