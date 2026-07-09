@@ -441,15 +441,15 @@
             // 示例使用高德地图API格式，也可以换成百度地图或腾讯地图
             // 参数：name=地点名称, addr=详细地址
             
-            const address = "陕西省渭南市合阳县凤凰西街与解放南路交叉口东160米";
-            const name = "格林春天";
+            const address = "中国陕西省渭南市合阳县凤凰西路";
+            const name = "格林春天（南门）";
             
             // 检测是否为移动设备
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
                 // 尝试唤起高德地图APP
-                window.location.href = `amapuri://route/plan/?sid=&slat=&slon=&sname=我的位置&did=&dlat=39.90969&dlon=116.45827&dname=${encodeURIComponent(name)}&dev=0&t=0`;
+                window.location.href = `amapuri://route/plan/?sid=&slat=&slon=&sname=我的位置&did=&dlat=35.22482&dlon=110.15031&dname=${encodeURIComponent(name)}&dev=0&t=0`;
                 
                 // 如果未安装APP，可以使用Web版地图作为备选，或者直接使用系统默认地图
                 // 以下是通用Web地图链接示例（高德）：
